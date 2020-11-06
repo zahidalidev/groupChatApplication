@@ -7,6 +7,10 @@ import 'firebase/firestore'
 import AppButton from '../components/AppButton';
 import InputFeild from '../components/InputFeild';
 
+import { firebaseConfig } from "../config"
+if (firebase.apps.length === 0) {
+    firebase.initializeApp(firebaseConfig)
+}
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();

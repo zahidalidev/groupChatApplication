@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import firebase from "firebase";
 
+
+import { firebaseConfig } from "../config"
+if (firebase.apps.length === 0) {
+    firebase.initializeApp(firebaseConfig)
+}
 class LoadingScreen extends Component {
 
     componentDidMount = () => {

@@ -7,6 +7,11 @@ import "firebase/firestore"
 import GroupCard from '../components/GroupCard';
 import HeaderBar from '../components/HeaderBar';
 
+import { firebaseConfig } from "../config"
+if (firebase.apps.length === 0) {
+    firebase.initializeApp(firebaseConfig)
+}
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
