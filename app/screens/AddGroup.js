@@ -43,10 +43,10 @@ function AddGroup(props) {
 
     return (
         <View style={styles.container}>
-            <InputFeild width="90%" placeholder="Group Name" onChangeText={(text) => setName(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
-            <InputFeild width="90%" placeholder="Group Tag" onChangeText={(text) => setTag(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
-            <InputFeild width="90%" placeholder="Group Description" onChangeText={(text) => setDescription(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
-            <AppButton title="Create Group" width="50%" onPress={createGroup} />
+            <InputFeild key={1} width="90%" placeholder="Group Name" onChangeText={(text) => setName(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
+            <InputFeild key={2} width="90%" placeholder="Group Tag" onChangeText={(text) => setTag(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
+            <InputFeild key={3} width="90%" placeholder="Group Description" onChangeText={(text) => setDescription(text)} style={{ alignSelf: "center", justifyContent: "center" }} />
+            <AppButton key={4} title="Create Group" width="50%" onPress={createGroup} />
         </View>
     );
 }
