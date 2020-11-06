@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text, Button } from 'react-native';
 import firebase from 'firebase';
-import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/firestore'
 
 import AppButton from '../components/AppButton';
 import InputFeild from '../components/InputFeild';
