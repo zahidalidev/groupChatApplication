@@ -7,7 +7,7 @@ import "firebase/firestore"
 import GroupCard from '../components/GroupCard';
 import HeaderBar from '../components/HeaderBar';
 
-import { firebaseConfig } from "../config"
+import { firebaseConfig } from "../../config"
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig)
 }
@@ -28,9 +28,11 @@ class HomeScreen extends Component {
             await this.groupRef.onSnapshot((querySnapshot) => {
                 const groups = querySnapshot.docChanges().map(({ doc }) => {
                     const group = doc.data();
+                    console.log("id", doc.id)
                     return group;
                 })
-                console.log(groups)
+                console.log("group: ", groups)
+                this.setState({ groups })
             })
         } catch (error) {
 
@@ -38,12 +40,15 @@ class HomeScreen extends Component {
     }
 
     render() {
+        const { groups } = this.state;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" backgroundColor="#364351" />
                 <HeaderBar navigate={this.props.navigation.navigate} />
 
-                {/* <GroupCard avatarTitle="MD" avatarBackColor="orange" groupTitle="AI Lab Project" /> */}
+                {groups.map((group, i) => (
+                    <GroupCard key={i} avatarTitle="MD" avatarBackColor="orange" groupTitle={group.name} />
+                ))}
             </View>
         );
     }

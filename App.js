@@ -6,11 +6,11 @@ import firebase from "firebase"
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import { NavigationContainer } from "@react-navigation/native"
 
-import LoadingScreen from "./screens/LoadingScreen"
-import LoginScreen from "./screens/LoginScreen"
-import HomeScreen from "./screens/HomeScreen"
+import LoadingScreen from "./app/screens/LoadingScreen"
+import LoginScreen from "./app/screens/LoginScreen"
+import HomeScreen from "./app/screens/HomeScreen"
+import AddGroup from './app/screens/AddGroup';
 import { firebaseConfig } from "./config"
-import AddGroup from './screens/AddGroup';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)

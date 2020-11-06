@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import firebase from "firebase"
 
-import { firebaseConfig } from "../config"
+import { firebaseConfig } from "../../config"
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig)
 }
@@ -37,7 +37,7 @@ class LoginScreen extends Component {
                                 lastName: result.additionalUserInfo.profile.family_name,
                                 createdAt: Date.now()
                             }).then(function (snapshot) {
-                                console.log("saved", snapshot)
+                                console.log("saved")
                             });
                         } else {
                             firebase.database().ref('/users/' + result.user.uid).update({
