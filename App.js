@@ -8,24 +8,17 @@ import { NavigationContainer } from "@react-navigation/native"
 
 import LoadingScreen from "./screens/LoadingScreen"
 import LoginScreen from "./screens/LoginScreen"
-import DashboardScreen from "./screens/DashboardScreen"
+import HomeScreen from "./screens/HomeScreen"
 import { firebaseConfig } from "./config"
+import AddGroup from './screens/AddGroup';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
+
 LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
 const Stack = createDrawerNavigator();
-
-
-// const AppSwitchNavigator = createSwitchNavigator({
-//   LoadingScreen: LoadingScreen,
-//   LoginScreen: LoginScreen,
-//   DashboardScreen: DashboardScreen
-// })
-
-// const AppNavigator = createAppContainer(AppSwitchNavigator)
 
 export default class App extends Component {
   render() {
@@ -34,7 +27,8 @@ export default class App extends Component {
         <Stack.Navigator initialRouteName="LoadingScreen">
           <Stack.Screen name="LoadingScreen" >{(props) => <LoadingScreen {...props} />}</Stack.Screen>
           <Stack.Screen name="LoginScreen" >{(props) => <LoginScreen {...props} />}</Stack.Screen>
-          <Stack.Screen name="DashboardScreen">{(props) => <DashboardScreen {...props} />}</Stack.Screen>
+          <Stack.Screen name="HomeScreen">{(props) => <HomeScreen {...props} />}</Stack.Screen>
+          <Stack.Screen name="AddGroup">{(props) => <AddGroup {...props} />}</Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );
