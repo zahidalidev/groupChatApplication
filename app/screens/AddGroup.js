@@ -32,6 +32,7 @@ function AddGroup(props) {
                 description,
                 uid,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                members: []
             })
 
             console.log("created")

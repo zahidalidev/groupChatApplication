@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, NativeModules } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import firebase from "firebase"
-
 
 function HeaderBar({ navigate }) {
     const signOut = () => {
@@ -11,6 +10,7 @@ function HeaderBar({ navigate }) {
         }).catch(function (error) {
             // An error happened.
         });
+        NativeModules.DevSettings.reload();
     }
 
     return (
@@ -27,10 +27,5 @@ function HeaderBar({ navigate }) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-
-    }
-})
 
 export default HeaderBar;

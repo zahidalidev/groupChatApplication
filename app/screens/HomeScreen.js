@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, View, StatusBar, TextInput } from 'react-native';
+import { Button, StyleSheet, Text, View, StatusBar, RefreshControl } from 'react-native';
 import firebase from "firebase"
 import "firebase/auth"
 import "firebase/firestore"
@@ -18,33 +18,35 @@ const firestore = firebase.firestore();
 class HomeScreen extends Component {
 
     state = {
-        groups: []
+        groups: [],
+        userID: auth.currentUser.uid
     }
 
-    groupRef = firestore.collection('groups')
+    groupRef = firestore.collection('groups').where('uid', "==", this.state.userID)
 
     componentDidMount = async () => {
         try {
             await this.groupRef.onSnapshot((querySnapshot) => {
-                const groups = querySnapshot.docChanges().map(({ doc }) => {
+                let groups = querySnapshot.docChanges().filter(({ type }) => type === 'added').map(({ doc }) => {
                     const group = doc.data();
-                    console.log("id", doc.id)
+                    // console.log("id", doc.id)
                     return group;
-                })
-                console.log("group: ", groups)
+                }).sort((a, b) => b.createdAt - a.createdAt)
+                groups = [...groups, ...this.state.groups]
                 this.setState({ groups })
             })
         } catch (error) {
-
+            console.log("Error in loading groups: ", error)
         }
     }
+
 
     render() {
         const { groups } = this.state;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" backgroundColor="#364351" />
-                <HeaderBar navigate={this.props.navigation.navigate} />
+                <HeaderBar navigate={this.props.navigation} />
 
                 {groups.map((group, i) => (
                     <GroupCard key={i} avatarTitle="MD" avatarBackColor="orange" groupTitle={group.name} />

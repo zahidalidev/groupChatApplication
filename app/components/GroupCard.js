@@ -3,9 +3,9 @@ import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar, Accessory } from 'react-native-elements';
 
 
-function GroupCard({ avatarTitle, avatarBackColor, groupTitle }) {
+function GroupCard({ avatarTitle, avatarBackColor, groupTitle, style }) {
     return (
-        <TouchableOpacity style={styles.carContainer}>
+        <TouchableOpacity style={[styles.carContainer, style]}>
             <Avatar rounded title={avatarTitle} overlayContainerStyle={{ backgroundColor: avatarBackColor }} size="medium" />
             <Text style={styles.groupTitle} >{groupTitle}</Text>
         </TouchableOpacity>
